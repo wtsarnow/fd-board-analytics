@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>FanDuel Player Board • Google Analytics (GA4) Telemetry Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261026v1" />
+</head>
+<body>
+  <!-- TOP FANDUEL / GA4 TELEMETRY HEADER BAR -->
+  <header class="fd-topbar">
+    <div class="fd-topbar-left">
+      <div class="fd-logo">
+        <span class="fd-shield">GA4</span>
+        <div class="fd-brand-text">
+          <div class="fd-brand-title">
+            <span>FD BOARD ANALYTICS</span>
+            <span class="ga-badge" id="hdr-measurement-badge">LOADING CSV…</span>
+            <span class="prop-badge" id="hdr-property-badge">PROP —</span>
+          </div>
+          <div class="fd-brand-sub" id="hdr-subtitle">Loading Google Analytics metadata from data/meta.csv…</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN VIEW TABS (4 TOUCH-FRIENDLY TABS) -->
+    <nav class="fd-nav-tabs" role="tablist" aria-label="Analytics Dashboard Views">
+      <button class="fd-nav-tab active" data-tab="overview" id="tab-btn-overview" role="tab" aria-selected="true">
+        <span class="tab-dot live"></span>
+        <span class="tab-label-full">Overview &amp; Daily Traffic</span>
+        <span class="tab-label-short">Overview</span>
+      </button>
+      <button class="fd-nav-tab" data-tab="engagement" id="tab-btn-engagement" role="tab" aria-selected="false">
+        <span class="tab-dot trend"></span>
+        <span class="tab-label-full">Pages, Events &amp; Engagement</span>
+        <span class="tab-label-short">Pages &amp; Events</span>
+      </button>
+      <button class="fd-nav-tab" data-tab="acquisition" id="tab-btn-acquisition" role="tab" aria-selected="false">
+        <span class="tab-dot math"></span>
+        <span class="tab-label-full">Acquisition, Tech &amp; Geography</span>
+        <span class="tab-label-short">Geo &amp; Tech</span>
+      </button>
+      <button class="fd-nav-tab" data-tab="csvdata" id="tab-btn-csvdata" role="tab" aria-selected="false">
+        <span class="tab-dot csv"></span>
+        <span class="tab-label-full">Raw CSV Architecture (9 Files)</span>
+        <span class="tab-label-short">Raw CSVs</span>
+      </button>
+    </nav>
+
+    <div class="fd-topbar-right">
+      <a class="monitored-link-pill" id="hdr-monitored-link" href="#" target="_blank" rel="noopener">
+        <span>↗ Monitored Site</span>
+      </a>
+      <div class="fd-lock-pill" id="hdr-build-pill">Build: —</div>
+      <button class="btn-refresh-csv" id="btn-refresh-csv" type="button" title="Re-fetch all 9 data/*.csv files with fresh cache-buster">
+        🔄 Refresh Analytics CSVs
+      </button>
+    </div>
+  </header>
+
+  <!-- SUB-HEADER PROPERTY & STATUS BANNER (Populated 100% from data/meta.csv) -->
+  <section class="ga-meta-strip" id="ga-meta-strip">
+    <div class="meta-strip-item">
+      <span class="meta-lbl">GA4 Property:</span>
+      <strong class="meta-val" id="meta-prop-name">—</strong>
+    </div>
+    <div class="meta-strip-item">
+      <span class="meta-lbl">Measurement ID:</span>
+      <strong class="meta-val mono accent" id="meta-measurement-id">—</strong>
+    </div>
+    <div class="meta-strip-item">
+      <span class="meta-lbl">Date Window:</span>
+      <strong class="meta-val" id="meta-date-range">—</strong>
+    </div>
+    <div class="meta-strip-item">
+      <span class="meta-lbl">Last CSV Publish:</span>
+      <strong class="meta-val mono pos" id="meta-generated-at">—</strong>
+    </div>
+    <div class="meta-strip-item">
+      <span class="meta-lbl">Standard Reports Status:</span>
+      <span class="meta-val gold" id="meta-std-status">—</span>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- TAB 1: OVERVIEW, REALTIME PULSE & DAILY TRAFFIC TRENDS                -->
+  <!-- ===================================================================== -->
+  <main id="tab-overview" class="fd-view active">
+    <div class="fd-container">
+      <!-- KPI SUMMARY CARDS GRID (from data/kpi_summary.csv) -->
+      <section class="panel-card">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">Google Analytics 4 • Executive KPI Summary</h2>
+            <p class="panel-sub" id="kpi-section-sub">Populated dynamically at runtime from <code>data/kpi_summary.csv</code></p>
+          </div>
+          <div class="panel-actions">
+            <div class="filter-group">
+              <label for="kpi-cat-filter">Category:</label>
+              <select id="kpi-cat-filter">
+                <option value="ALL">All Categories</option>
+              </select>
+            </div>
+            <a class="btn-csv-dl" href="data/kpi_summary.csv" download>📥 kpi_summary.csv</a>
+          </div>
+        </div>
+        <div class="kpi-grid" id="kpi-grid"></div>
+      </section>
+
+      <!-- REALTIME STREAM SNAPSHOT + EVENT MIX (from data/realtime_snapshot.csv & data/events_breakdown.csv) -->
+      <div class="two-col-grid">
+        <section class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">⚡ GA4 Realtime Stream Pulse</h2>
+              <p class="panel-sub">Live 30-minute &amp; 5-minute telemetry from <code>data/realtime_snapshot.csv</code></p>
+            </div>
+            <a class="btn-csv-dl" href="data/realtime_snapshot.csv" download>📥 realtime_snapshot.csv</a>
+          </div>
+          <div class="realtime-cards-list" id="realtime-cards-list"></div>
+        </section>
+
+        <section class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">📊 Realtime Event Composition</h2>
+              <p class="panel-sub">Proportional share of captured GA4 events from <code>data/events_breakdown.csv</code></p>
+            </div>
+            <a class="btn-csv-dl" href="data/events_breakdown.csv" download>📥 events_breakdown.csv</a>
+          </div>
+          <div id="overview-events-chart" class="chart-box"></div>
+        </section>
+      </div>
+
+      <!-- DAILY TRAFFIC & EVENT VOLUME CHARTS (from data/daily_traffic.csv) -->
+      <section class="panel-card">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">📈 Daily Traffic &amp; Event Telemetry (Standard 7d Window + Live Realtime Stream)</h2>
+            <p class="panel-sub">Rendered dynamically from <code>data/daily_traffic.csv</code> with NFL slate context annotations</p>
+          </div>
+          <div class="panel-actions">
+            <div class="filter-group">
+              <label for="daily-report-filter">Report Stream:</label>
+              <select id="daily-report-filter">
+                <option value="ALL">All Days (Standard + Realtime)</option>
+              </select>
+            </div>
+            <a class="btn-csv-dl" href="data/daily_traffic.csv" download>📥 daily_traffic.csv</a>
+          </div>
+        </div>
+
+        <div class="two-col-grid chart-pair">
+          <div class="chart-card">
+            <div class="chart-card-title">Daily Active Users, New Users &amp; Sessions</div>
+            <div id="chart-daily-users" class="svg-chart-wrap"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-title">Daily Pageviews &amp; Total GA4 Events</div>
+            <div id="chart-daily-events" class="svg-chart-wrap"></div>
+          </div>
+        </div>
+
+        <!-- SEARCHABLE & SORTABLE DAILY TRAFFIC TABLE -->
+        <div class="table-toolbar">
+          <input type="text" id="daily-search" class="table-search-input" placeholder="Filter by date, report stream, or NFL slate context…" autocomplete="off" />
+          <span class="table-count-badge" id="daily-row-count">— rows</span>
+        </div>
+        <div class="table-scroll">
+          <table class="fd-table" id="daily-traffic-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Report Stream</th>
+                <th class="num">Active Users</th>
+                <th class="num">New Users</th>
+                <th class="num">Sessions</th>
+                <th class="num">Engaged Sessions</th>
+                <th class="num">Pageviews</th>
+                <th class="num">Total Events</th>
+                <th class="num">Engagement Rate</th>
+                <th>NFL Slate &amp; Telemetry Context</th>
+              </tr>
+            </thead>
+            <tbody id="daily-traffic-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- TAB 2: PAGES, SCREENS & GA4 EVENTS BREAKDOWN                          -->
+  <!-- ===================================================================== -->
+  <main id="tab-engagement" class="fd-view">
+    <div class="fd-container">
+      <!-- PAGES & SCREENS BREAKDOWN -->
+      <section class="panel-card">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">📄 Pages &amp; Screens Telemetry</h2>
+            <p class="panel-sub">Page path, title, views per user, and event volume from <code>data/pages_screens.csv</code></p>
+          </div>
+          <a class="btn-csv-dl" href="data/pages_screens.csv" download>📥 pages_screens.csv</a>
+        </div>
+        <div id="pages-visual-bars" class="bars-container"></div>
+        <div class="table-scroll">
+          <table class="fd-table">
+            <thead>
+              <tr>
+                <th class="num">#</th>
+                <th>Page Path</th>
+                <th>Page Title</th>
+                <th>Source Window</th>
+                <th class="num">Views</th>
+                <th class="num">Active Users</th>
+                <th class="num">Views / User</th>
+                <th class="num">Event Count</th>
+                <th class="num">Share of Views</th>
+              </tr>
+            </thead>
+            <tbody id="pages-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- GA4 EVENTS BREAKDOWN -->
+      <section class="panel-card">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">🎯 GA4 Event Name Breakdown &amp; Enhanced Measurement</h2>
+            <p class="panel-sub">All automatic &amp; enhanced measurement events from <code>data/events_breakdown.csv</code></p>
+          </div>
+          <div class="panel-actions">
+            <input type="text" id="events-search" class="table-search-input" placeholder="Search event name or category…" autocomplete="off" />
+            <a class="btn-csv-dl" href="data/events_breakdown.csv" download>📥 events_breakdown.csv</a>
+          </div>
+        </div>
+        <div id="events-visual-bars" class="bars-container"></div>
+        <div class="table-scroll">
+          <table class="fd-table">
+            <thead>
+              <tr>
+                <th class="num">Rank</th>
+                <th>Event Name</th>
+                <th>Category</th>
+                <th class="num">Event Count</th>
+                <th class="num">Users</th>
+                <th class="num">Events / User</th>
+                <th class="num">Share (%)</th>
+                <th>Telemetry Trigger Description</th>
+              </tr>
+            </thead>
+            <tbody id="events-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- TAB 3: ACQUISITION, TECH & GEOGRAPHY                                  -->
+  <!-- ===================================================================== -->
+  <main id="tab-acquisition" class="fd-view">
+    <div class="fd-container">
+      <!-- TRAFFIC ACQUISITION & AUDIENCES -->
+      <section class="panel-card">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">🚀 Traffic Acquisition Channels &amp; Audience Segments</h2>
+            <p class="panel-sub">Session channels, source/medium, and GA4 audiences from <code>data/traffic_sources.csv</code></p>
+          </div>
+          <a class="btn-csv-dl" href="data/traffic_sources.csv" download>📥 traffic_sources.csv</a>
+        </div>
+        <div class="table-scroll">
+          <table class="fd-table">
+            <thead>
+              <tr>
+                <th class="num">#</th>
+                <th>Channel Group</th>
+                <th>Source / Medium</th>
+                <th>Audience Segment</th>
+                <th class="num">Active Users</th>
+                <th class="num">New Users</th>
+                <th class="num">Sessions</th>
+                <th class="num">Engaged Sessions</th>
+                <th class="num">Eng. Rate</th>
+                <th class="num">Events</th>
+                <th>Status / Stream Note</th>
+              </tr>
+            </thead>
+            <tbody id="traffic-sources-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="two-col-grid">
+        <!-- GEOGRAPHY BREAKDOWN -->
+        <section class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">🌎 Geography Distribution</h2>
+              <p class="panel-sub">Country &amp; region telemetry from <code>data/geography.csv</code></p>
+            </div>
+            <a class="btn-csv-dl" href="data/geography.csv" download>📥 geography.csv</a>
+          </div>
+          <div id="geo-visual-bars" class="bars-container"></div>
+          <div class="table-scroll">
+            <table class="fd-table">
+              <thead>
+                <tr>
+                  <th class="num">#</th>
+                  <th>Country</th>
+                  <th>Region</th>
+                  <th>Source Window</th>
+                  <th class="num">Users</th>
+                  <th class="num">Sessions</th>
+                  <th class="num">Views</th>
+                  <th class="num">Share</th>
+                </tr>
+              </thead>
+              <tbody id="geography-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- DEVICES & TECH STREAM -->
+        <section class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">💻 Stream &amp; Tech Implementation</h2>
+              <p class="panel-sub">Data stream &amp; tag telemetry from <code>data/devices_tech.csv</code></p>
+            </div>
+            <a class="btn-csv-dl" href="data/devices_tech.csv" download>📥 devices_tech.csv</a>
+          </div>
+          <div class="table-scroll">
+            <table class="fd-table">
+              <thead>
+                <tr>
+                  <th>Dimension Type</th>
+                  <th>Dimension Value</th>
+                  <th class="num">Users</th>
+                  <th class="num">Sessions</th>
+                  <th class="num">Views</th>
+                  <th class="num">Share</th>
+                  <th>Status Note</th>
+                </tr>
+              </thead>
+              <tbody id="devices-tech-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- TAB 4: RAW CSV ARCHITECTURE & DATA DICTIONARY                         -->
+  <!-- ===================================================================== -->
+  <main id="tab-csvdata" class="fd-view">
+    <div class="fd-container">
+      <section class="panel-card">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">🗂️ 100% CSV-Driven Architecture • Live File Inspector</h2>
+            <p class="panel-sub">Every number on this site is loaded via <code>fetch('data/*.csv', { cache: 'no-store' })</code>. Zero data is hardcoded in HTML, JS, or CSS.</p>
+          </div>
+        </div>
+        <div class="csv-files-grid" id="csv-files-grid"></div>
+      </section>
+
+      <section class="panel-card">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">🔑 Property Metadata Dictionary (<code>data/meta.csv</code>)</h2>
+            <p class="panel-sub">Exact key-value configuration governing this build</p>
+          </div>
+          <a class="btn-csv-dl" href="data/meta.csv" download>📥 meta.csv</a>
+        </div>
+        <div class="table-scroll">
+          <table class="fd-table">
+            <thead>
+              <tr>
+                <th>Metadata Key</th>
+                <th>Live Value</th>
+              </tr>
+            </thead>
+            <tbody id="meta-dict-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="app.js?v=20261026v1"></script>
+</body>
+</html>
