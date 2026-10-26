@@ -1,0 +1,3 @@
+rank,country,region,city,active_users,sessions,pageviews,share_pct,source_window
+1,United States,All US Regions (Realtime Stream),All US Cities (Realtime Stream),2,2,3,100.0,GA4 Realtime (Last 30 Min)
+2,Standard Geo Report (7d / 28d),Pending 24–48h GA4 Batch Processing,Pending 24–48h GA4 Batch Processing,0,0,0,0.0,GA4 Standard (Last 7 Days)

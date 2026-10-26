@@ -1,0 +1,3 @@
+rank,channel_group,source_medium,audience_segment,active_users,new_users,sessions,engaged_sessions,engagement_rate_pct,event_count,status_note
+1,Realtime Stream (Direct / GitHub Pages),wtsarnow.github.io / referral & direct,All Users,2,2,2,2,100.0,10,Live GA4 Realtime Audience & Session Stream (Last 30 Min)
+2,Standard Acquisition Reports (7d / 28d),(not yet processed),All Users (Standard),0,0,0,0,0.0,0,Home shows 'No data received yet'; standard reports not yet processed

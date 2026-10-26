@@ -1,0 +1,5 @@
+metric_id,metric,value,formatted_value,window,detail,captured_at_et
+active_users_30min,Active Users in Last 30 Minutes,2,2,Last 30 Min,Audience: All Users (2) • Country: United States (2),2026-10-26 07:39 AM ET
+active_users_5min,Active Users in Last 5 Minutes,1,1,Last 5 Min,Live active session on FanDuel NFL Player Selection Board,2026-10-26 07:39 AM ET
+realtime_views,Views by Page Title,3,3,Last 30 Min,FanDuel NFL Player Selection & Historic Trends Board (CSV-Driven v6),2026-10-26 07:39 AM ET
+realtime_events,Total Event Count (All Event Names),10,10,Last 30 Min,"page_view (3), first_visit (2), session_start (2), user_engagement (2), scroll (1)",2026-10-26 07:39 AM ET

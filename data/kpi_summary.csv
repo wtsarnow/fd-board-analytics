@@ -1,0 +1,9 @@
+metric_id,label,value,formatted_value,delta_pct,period,category,description
+rt_active_users_30m,Active Users (Last 30 Min),2,2,LIVE,GA4 Realtime (30m),Realtime,Distinct active users on wtsarnow.github.io/fd-player-board/ in the last 30 minutes
+rt_active_users_5m,Active Users (Last 5 Min),1,1,LIVE,GA4 Realtime (5m),Realtime,Distinct active users on the player board in the last 5 minutes
+rt_pageviews,Pageviews (Realtime Stream),3,3,1.50 / user,GA4 Realtime (30m),Engagement,Total page_view events captured on FanDuel NFL Player Selection & Historic Trends Board
+rt_total_events,Total GA4 Events (Realtime),10,10,5.00 / user,GA4 Realtime (30m),Events,"Sum of all GA4 events (page_view, first_visit, session_start, user_engagement, scroll)"
+rt_sessions,Sessions Started (Realtime),2,2,2 new visits,GA4 Realtime (30m),Acquisition,Total session_start events recorded alongside first_visit acquisition triggers
+rt_engagement_rate,Session Engagement Rate,100.0,100.0%,2/2 engaged,GA4 Realtime (30m),Engagement,Ratio of user_engagement events to session_start events in the live GA4 stream
+std_7d_users,Standard Report Users (7d),0,0,PENDING BATCH,Oct 19–Oct 25 (7d),Standard Reports,Home shows 'No data received yet'; standard reports not yet processed
+std_7d_events,Standard Report Events (7d),0,0,0 key events,Oct 19–Oct 25 (7d),Standard Reports,"Processed standard report views=0, events=0 (Home shows 'No data received yet'; standard reports not yet processed)"

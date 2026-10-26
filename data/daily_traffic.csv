@@ -1,0 +1,9 @@
+date,active_users,new_users,sessions,engaged_sessions,pageviews,event_count,avg_engagement_sec,engagement_rate_pct,report_type,slate_context
+2026-10-19,0,0,0,0,0,0,0,0.0,Standard (7d Batch),Week 7 MNF Window • Pre-GA4 Tag Activation (0 processed)
+2026-10-20,0,0,0,0,0,0,0,0.0,Standard (7d Batch),Week 7 Tuesday Audit • Pre-GA4 Tag Activation (0 processed)
+2026-10-21,0,0,0,0,0,0,0,0.0,Standard (7d Batch),Week 8 Early Prep • Pre-GA4 Tag Activation (0 processed)
+2026-10-22,0,0,0,0,0,0,0,0.0,Standard (7d Batch),Week 8 TNF Window • Pre-GA4 Tag Activation (0 processed)
+2026-10-23,0,0,0,0,0,0,0,0.0,Standard (7d Batch),Week 8 Friday Sunday-Prep • Pre-GA4 Tag Activation (0 processed)
+2026-10-24,0,0,0,0,0,0,0,0.0,Standard (7d Batch),Week 8 Saturday Build • gtag.js G-R2MJKM5R7Y Deployed (Batch Pending)
+2026-10-25,0,0,0,0,0,0,0,0.0,Standard (7d Batch),Week 8 Sunday Main #135562 + SNF #135719 (GA4 24–48h Batch Processing)
+2026-10-26,2,2,2,2,3,10,0,100.0,Realtime Live Stream,Week 8 Mon Morning MNF Prep (DAL@PHI #135720) • Live GA4 Realtime Stream

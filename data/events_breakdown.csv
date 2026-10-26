@@ -1,0 +1,6 @@
+rank,event_name,event_count,total_users,events_per_user,share_of_events_pct,category,description
+1,page_view,3,2,1.50,30.0,Page / Navigation,Fired automatically by gtag.js (G-R2MJKM5R7Y) when index.html loads on GitHub Pages
+2,first_visit,2,2,1.00,20.0,User Acquisition,Triggered on a user's first recorded visit to wtsarnow.github.io/fd-player-board/
+3,session_start,2,2,1.00,20.0,Session Lifecycle,Triggered when a new browsing session starts on the FanDuel Player Selection Board
+4,user_engagement,2,2,1.00,20.0,Engagement,Fired when the board remains in foreground focus (>=10s engaged session or tab interaction)
+5,scroll,1,1,0.50,10.0,Enhanced Measurement,Fired when a user scrolls past 90% vertical depth of the Player Pool or Historic Trends table

@@ -1,0 +1,4 @@
+dimension_type,dimension_value,active_users,sessions,pageviews,share_pct,status_note
+Stream Source,Web Data Stream (wtsarnow.github.io/fd-player-board/),2,2,3,100.0,Active in GA4 Realtime (G-R2MJKM5R7Y)
+Tag Implementation,Google Tag (gtag.js • G-R2MJKM5R7Y),2,2,3,100.0,"Enhanced Measurement Enabled (page_view, scroll, user_engagement)"
+Device / Tech Breakdown (Standard 7d),Awaiting 24–48h GA4 Standard Report Processing,0,0,0,0.0,Home shows 'No data received yet'; standard reports not yet processed

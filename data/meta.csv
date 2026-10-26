@@ -1,0 +1,18 @@
+key,value
+build_id,20261026-073906
+property_name,fd-player-board
+account_name,wtsarnow
+account_id,413419273
+property_id,560738630
+measurement_id,G-R2MJKM5R7Y
+monitored_site_url,https://wtsarnow.github.io/fd-player-board/
+monitored_repo_url,https://github.com/wtsarnow/fd-player-board
+dashboard_url,https://wtsarnow.github.io/fd-board-analytics/
+dashboard_repo_url,https://github.com/wtsarnow/fd-board-analytics
+date_range,"Oct 19 – Oct 26, 2026 (Last 7 Days Standard + 2026-10-26 Live Realtime)"
+generated_at,2026-10-26 07:39 AM ET (GA4 Live Snapshot)
+data_source,Google Analytics 4 (Account #413419273 • Property #560738630 • Tag G-R2MJKM5R7Y)
+standard_reports_status,Home shows 'No data received yet'; standard reports not yet processed
+refresh_schedule,Synced with FD Board Cadence: Mon/Thu/Fri 9:00 AM ET Prep + Pre-Game Locks & Post-Game Actuals
+updater_bot,@fd-board-updater
+updater_bot_id,3d16d616-921d-472e-a9ef-bf156bbd1391
